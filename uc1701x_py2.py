@@ -25,11 +25,11 @@ LOW, HIGH = [0, 1]
 GPIO.setmode(GPIO.BCM) #GPIO.BCM or GOIO.BOARD
 
 # Pin definition
-cs      = 2
-rst     = 3
-rs      = 4
-sda     = 17
-sck     = 27
+cs      = 25
+rst     = 24
+rs      = 23
+sda     = 10
+sck     = 11
 LEDA    = 22
 
 
