@@ -13,6 +13,7 @@ def main():
     # fill and clear LCD test
     lcd.fillDisplay()
     lcd.clearLCD()
+    lcd.fullBackLight()
 
     # display UTC time
     image = Image.new('1', (uc1701x.LCD_WIDTH, uc1701x.LCD_HEIGHT), 0)
