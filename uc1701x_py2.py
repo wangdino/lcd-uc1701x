@@ -4,8 +4,8 @@
 # 03  ROM_SCK   N/C     N/C
 # 04  ROM_CS    N/C     N/C
 # 05  LEDA      22      15
-# 06  VSS/GND   GND     09
-# 07  VDD/PWR   3.3V    01
+# 06  VSS/GND   GND     20
+# 07  VDD/PWR   3.3V    17
 # 08  SCLK      11      23
 # 09  SDA       10      19
 # 10  RS        23      16
