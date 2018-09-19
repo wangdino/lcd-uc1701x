@@ -1,14 +1,16 @@
-#| 1701 | RPi.BCM   | BOARD |
-#|======|===========|=======|
-#| cs   | 2         | 3     |
-#| rst  | 3         | 5     |
-#| rs   | 4         | 7     |
-#| sda  | 17        | 11    |
-#| sck  | 27        | 13    |
-#| vdd  | 3.3v      | 1     |
-#| vss  | GND       | 9     |
-#| LEDA | 22        | 15    |
-#|======|===========|=======|
+# Pin  1701   RPi.BCM  Board
+# 01  ROM_IN    N/C     N/C
+# 02  ROM_OUT   N/C     N/C
+# 03  ROM_SCK   N/C     N/C
+# 04  ROM_CS    N/C     N/C
+# 05  LEDA      22      15
+# 06  VSS/GND   GND     20
+# 07  VDD/PWR   3.3V    17
+# 08  SCLK      11      23
+# 09  SDA       10      19
+# 10  RS        23      16
+# 11  RESET     24      18
+# 12  CS        25      22
 
 from RPi import GPIO
 from PIL import Image
