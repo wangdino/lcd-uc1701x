@@ -1,16 +1,16 @@
-# Pin  1701   RPi.BCM  Board
-# 01  ROM_IN    N/C     N/C
-# 02  ROM_OUT   N/C     N/C
-# 03  ROM_SCK   N/C     N/C
-# 04  ROM_CS    N/C     N/C
-# 05  LEDA      22      15
-# 06  VSS/GND   GND     20
-# 07  VDD/PWR   3.3V    17
-# 08  SCLK      11      23
-# 09  SDA       10      19
-# 10  RS        23      16
-# 11  RESET     24      18
-# 12  CS        25      22
+# Pin  1701   RPi.BCM  Board  Color
+# 01  ROM_IN    N/C     N/C    N/C
+# 02  ROM_OUT   N/C     N/C    N/C
+# 03  ROM_SCK   N/C     N/C    N/C
+# 04  ROM_CS    N/C     N/C    N/C
+# 05  LEDA      22      15     GY
+# 06  VSS/GND   GND     20     BK
+# 07  VDD/PWR   3.3V    17     RD
+# 08  SCLK      11      23     VT
+# 09  SDA       10      19     BU
+# 10  RS        23      16     GN
+# 11  RESET     24      18     YE
+# 12  CS        25      22     OG
 
 from RPi import GPIO
 from PIL import Image
