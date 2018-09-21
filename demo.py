@@ -15,8 +15,8 @@ def main():
     Comfortaa = ImageFont.truetype('fonts/Comfortaa-Regular.ttf', 12)
     PoiretOne = ImageFont.truetype('fonts/PoiretOne-Regular.ttf', 16)
     Rokkitt = ImageFont.truetype('fonts/Rokkitt-Regular.ttf', 14)
-    UbuntuMono = ImageFont.truetype('fonts/UbuntuMono-Regular.ttf', 12)
-    RobotoMono = ImageFont.truetype('fonts/RobotoMono-Regular.ttf', 14) # 16 char per line
+    UbuntuMono = ImageFont.truetype('fonts/UbuntuMono-Regular.ttf', 11) # 21 char per line
+    RobotoMono = ImageFont.truetype('fonts/RobotoMono-Regular.ttf', 11) # 16 char per line
     
     line1 = 'The quick brown fox jumps over the lazy dog.'
     line2 = '1234567890123456789'
