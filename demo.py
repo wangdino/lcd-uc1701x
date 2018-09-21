@@ -41,7 +41,7 @@ def main():
 
     image = Image.new('1', (uc1701x.LCD_WIDTH, uc1701x.LCD_HEIGHT), 0)
     lcd.displayImage(image)
-    lcd.delay(1000)
+    lcd.delay(100)
     draw = ImageDraw.Draw(image)
     draw.text((0,0), line1, font = Rokkitt, spacing = 0, fill = 255)
     draw.text((0,17), line2, font = RobotoMono, spacing = 0, fill = 255)
@@ -49,7 +49,7 @@ def main():
     draw.text((0,49), line4, font = Comfortaa, spacing = 0, fill = 255)
     lcd.setFrameBuffer(image)
     lcd.displayImage(image)
-    lcd.delay(10000)
+    lcd.delay(5000)
     lcd.clearLCD()
     image = Image.new('1', (uc1701x.LCD_WIDTH, uc1701x.LCD_HEIGHT), 0)
     lcd.displayImage(image)
