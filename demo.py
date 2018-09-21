@@ -36,7 +36,7 @@ def main():
     lcd.displayImage(image)
     lcd.delay(1000)
     draw = ImageDraw.Draw(image)
-    draw.text((0,0), line1, font = UbuntuMono, spacing = 0, fill = 255)
+    draw.text((0,0), line1, font = Rokkitt, spacing = 0, fill = 255)
     draw.text((0,17), line2, font = RobotoMono, spacing = 0, fill = 255)
     draw.text((0,33), line3, font = PoiretOne, spacing = 0, fill = 255)
     draw.text((0,49), line4, font = Comfortaa, spacing = 0, fill = 255)
@@ -44,17 +44,22 @@ def main():
     lcd.displayImage(image)
     lcd.delay(60000)
     lcd.clearLCD()
-    lcd.offBackLight()
+    #lcd.offBackLight()
 
     # keep refreshing
-#    while True:
-#        time = strftime("%H:%M:%S", gmtime())
-#        draw.rectangle((0, 0, image.size[0], image.size[1]), fill = 0)
-#        draw.rectangle((0, 0, 128, 20), fill = 255)
-#        draw.text((5, 3), "UTC", font = font_time, fill = 0)
-#        draw.text((5, 25), time, font = font_time, fill = 255)
-#        datas = lcd.setFrameBuffer(image)
-#        lcd.displayImage(image)
+    try:
+        while True:
+            time = strftime("%H:%M:%S", gmtime())
+            draw.rectangle((0, 0, image.size[0], image.size[1]), fill = 0)
+            draw.rectangle((0, 0, 128, 20), fill = 255)
+            draw.text((0, 0), "Zulu Time:", font = UbuntuMono, fill = 0)
+            draw.text((0, 20), time, font = UbuntuMono, fill = 255)
+            lcd.setFrameBuffer(image)
+            lcd.displayImage(image)
+    except KeyboardInterrupt:
+        print('Demo stopped...')
+        lcd.clearLCD()
+        lcd.offBackLight()
 
 
 if __name__ == '__main__':
