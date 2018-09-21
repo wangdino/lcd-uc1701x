@@ -36,13 +36,14 @@ def main():
     lcd.displayImage(image)
     lcd.delay(1000)
     draw = ImageDraw.Draw(image)
-    draw.text((0,0), line1, RobotoMono, spacing = 0, fill = 255)
-    draw.text((0,17), line2, RobotoMono, spacing = 0, fill = 255)
-    draw.text((0,33), line3, RobotoMono, spacing = 0, fill = 255)
-    draw.text((0,49), line4, RobotoMono, spacing = 0, fill = 255)
+    draw.text((0,0), line1, font = RobotoMono, spacing = 0, fill = 255)
+    draw.text((0,17), line2, font = RobotoMono, spacing = 0, fill = 255)
+    draw.text((0,33), line3, font = RobotoMono, spacing = 0, fill = 255)
+    draw.text((0,49), line4, font = RobotoMono, spacing = 0, fill = 255)
     lcd.setFrameBuffer(image)
     lcd.displayImage(image)
     lcd.delay(5000)
+    lcd.clearLCD()
 
     # keep refreshing
 #    while True:
