@@ -42,7 +42,7 @@ def main():
     draw.text((0,49), line4, font = RobotoMono, spacing = 0, fill = 255)
     lcd.setFrameBuffer(image)
     lcd.displayImage(image)
-    lcd.delay(5000)
+    lcd.delay(60000)
     lcd.clearLCD()
 
     # keep refreshing
