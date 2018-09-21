@@ -42,7 +42,7 @@ def main():
     draw.text((0,49), line4, font = Comfortaa, spacing = 0, fill = 255)
     lcd.setFrameBuffer(image)
     lcd.displayImage(image)
-    lcd.delay(60000)
+    lcd.delay(10000)
     lcd.clearLCD()
     #lcd.offBackLight()
 
@@ -51,14 +51,17 @@ def main():
         while True:
             time = strftime("%H:%M:%S", gmtime())
             draw.rectangle((0, 0, image.size[0], image.size[1]), fill = 0)
-            draw.rectangle((0, 0, 128, 20), fill = 255)
+            draw.rectangle((0, 0, 128, 16), fill = 255)
             draw.text((0, 0), "Zulu Time:", font = UbuntuMono, fill = 0)
-            draw.text((0, 20), time, font = UbuntuMono, fill = 255)
+            draw.text((0, 17), time, font = UbuntuMono, fill = 255)
+            draw.text((0, 33), 'UbuntuMono12345678901234567890', font = UbuntuMono, spacing = 0, fill = 255)
+            draw.text((0, 49), 'RobotoMono12345678901234567890', font = RobotoMono, spacing = 0, fill = 255)
             lcd.setFrameBuffer(image)
             lcd.displayImage(image)
     except KeyboardInterrupt:
         print('Demo stopped...')
-        lcd.clearLCD()
+        image = Image.new('1', (uc1701x.LCD_WIDTH, uc1701x.LCD_HEIGHT), 0)
+        lcd.displayImage(image)
         lcd.offBackLight()
 
 
