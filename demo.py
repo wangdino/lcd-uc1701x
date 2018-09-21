@@ -12,12 +12,11 @@ def main():
     # ../fonts/PoiretOne-Regular.ttf
     # ../fonts/Comfortaa-Regular.ttf    Bold|Light
     
-    font_size = 14
-    Comfortaa = ImageFont.truetype('fonts/Comfortaa-Regular.ttf', font_size)
-    PoiretOne = ImageFont.truetype('fonts/PoiretOne-Regular.ttf', font_size)
-    Rokkitt = ImageFont.truetype('fonts/Rokkitt-Regular.ttf', font_size)
-    UbuntuMono = ImageFont.truetype('fonts/UbuntuMono-Regular.ttf', font_size)
-    RobotoMono = ImageFont.truetype('fonts/RobotoMono-Regular.ttf', font_size)
+    Comfortaa = ImageFont.truetype('fonts/Comfortaa-Regular.ttf', 12)
+    PoiretOne = ImageFont.truetype('fonts/PoiretOne-Regular.ttf', 16)
+    Rokkitt = ImageFont.truetype('fonts/Rokkitt-Regular.ttf', 14)
+    UbuntuMono = ImageFont.truetype('fonts/UbuntuMono-Regular.ttf', 12)
+    RobotoMono = ImageFont.truetype('fonts/RobotoMono-Regular.ttf', 14) # 16 char per line
     
     line1 = 'The quick brown fox jumps over the lazy dog.'
     line2 = '1234567890123456789'
