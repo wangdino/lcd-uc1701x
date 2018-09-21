@@ -11,26 +11,25 @@ from matplotlib.pyplot import imshow
 # ../fonts/PoiretOne-Regular.ttf
 # ../fonts/Comfortaa-Regular.ttf    Bold|Light
 
-Comfortaa = '../fonts/Comfortaa-Regular.ttf'
-PoiretOne = '../fonts/PoiretOne-Regular.ttf'
-Rokkitt = '../fonts/Rokkitt-Regular.ttf'
-UbuntuMono = '../fonts/UbuntuMono-Regular.ttf'
-RobotoMono = '../fonts/RobotoMono-Regular.ttf'
+font_size_reg = 16 # Height about 19-21px
+font_size_xl = 32 # Height about 40px
 
-ft_face = RobotoMono
-ft_size = 14
-ft_gen = ImageFont.truetype(ft_face, ft_size)
+Wenq = ImageFont.truetype('../fonts/wqy-zenhei.ttc', font_size_reg)
+NotoSansSC = ImageFont.truetype('../fonts/NotoSansSC-Regular.otf', font_size_reg)
+NotoSerifSC = ImageFont.truetype('../fonts/NotoSerifSC-Regular.otf', font_size_xl)
 
-test_text = '''The quick brown fox jumps over the lazy dog
-See if a new line is possible.
-Another new line.
-Yet another new line.'''
-text_size = ft_gen.getsize(test_text)
-text_length = len(test_text)
-print(text_size, text_length, text_size[0]/text_length)
+line_SC = '这是坠吼的！'
+line_SC_XL = '吼哇！'
+
+#print('Wenq: ', Wenq.getsize(line_SC))
+#print('NotoSansSC: ', NotoSansSC.getsize(line_SC))
+#print('NotoSerifSC: ', NotoSerifSC.getsize(line_SC_XL))
 
 test_image = Image.new('1', (128, 64), 0)
 draw = ImageDraw.Draw(test_image)
-draw.multiline_text((0, 0), test_text, font = ft_gen, spacing = 0, fill = 255)
+#draw.text((0, 0), line_SC, font = Wenq, spacing = 0, fill = 255)
+#draw.text((0, 20), line_SC, font = NotoSansSC, spacing = 0, fill = 255)
+#draw.text((0, 41), line_SC, font = NotoSerifSC, spacing = 0, fill = 255)
+draw.text((16, 12), line_SC_XL, font = NotoSerifSC, spacing = 0, fill = 255)
 
 imshow(test_image)

@@ -11,17 +11,25 @@ def main():
     # ../fonts/Rokkitt-Regular.ttf    Black|Bold|ExtraBold|ExtraLight|Light|Medium|SemiBold|Thin
     # ../fonts/PoiretOne-Regular.ttf
     # ../fonts/Comfortaa-Regular.ttf    Bold|Light
+    font_size_reg = 16 # Height about 19-21px
+    font_size_xl = 32 # Height about 40px
     
     Comfortaa = ImageFont.truetype('fonts/Comfortaa-Regular.ttf', 12)
     PoiretOne = ImageFont.truetype('fonts/PoiretOne-Regular.ttf', 16)
     Rokkitt = ImageFont.truetype('fonts/Rokkitt-Regular.ttf', 14)
     UbuntuMono = ImageFont.truetype('fonts/UbuntuMono-Regular.ttf', 15) # 16 char per line
     RobotoMono = ImageFont.truetype('fonts/RobotoMono-Regular.ttf', 14) # 16 char per line
+
+    Wenq = ImageFont.truetype('fonts/wqy-zenhei.ttc', font_size_reg)
+    NotoSansSC = ImageFont.truetype('fonts/NotoSansSC-Regular.otf', font_size_reg)
+    NotoSerifSC = ImageFont.truetype('fonts/NotoSerifSC-Regular.otf', font_size_xl)
     
     line1 = 'The quick brown fox jumps over the lazy dog.'
     line2 = '1234567890123456789'
     line3 = 'PoiretOne'
     line4 = 'Comfortaa'
+    line_SC = '这是坠吼的！'
+    line_SC_XL = '吼哇！'
 
     lcd = uc1701x.LCD()
     lcd.initialLCD()
@@ -43,7 +51,11 @@ def main():
     lcd.displayImage(image)
     lcd.delay(10000)
     lcd.clearLCD()
-    #lcd.offBackLight()
+    draw.text((16, 12), line_SC_XL, font = NotoSerifSC, spacing = 0, fill = 255)
+    lcd.setFrameBuffer(image)
+    lcd.displayImage(image)
+    lcd.delay(10000)
+    lcd.clearLCD()
 
     # keep refreshing
     try:
