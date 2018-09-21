@@ -54,8 +54,9 @@ def main():
             draw.rectangle((0, 0, 128, 16), fill = 255)
             draw.text((0, 0), "Zulu Time:", font = UbuntuMono, fill = 0)
             draw.text((0, 17), time, font = UbuntuMono, fill = 255)
-            draw.text((0, 33), 'UbuntuMono12345678901234567890', font = UbuntuMono, spacing = 0, fill = 255)
-            draw.text((0, 49), 'RobotoMono12345678901234567890', font = RobotoMono, spacing = 0, fill = 255)
+            draw.rectangle((0, 33, 128, 48), fill = 255)
+            draw.text((0, 33), 'RobotoMono12345678901234567890', font = RobotoMono, spacing = 0, fill = 0)
+            draw.text((0, 49), 'UbuntuMono12345678901234567890', font = UbuntuMono, spacing = 0, fill = 255)
             lcd.setFrameBuffer(image)
             lcd.displayImage(image)
     except KeyboardInterrupt:
