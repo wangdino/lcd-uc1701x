@@ -18,45 +18,39 @@ Wenq = ImageFont.truetype('../fonts/wqy-zenhei.ttc', font_size_reg)
 NotoSansSC = ImageFont.truetype('../fonts/NotoSansSC-Regular.otf', font_size_reg)
 NotoSerifSC = ImageFont.truetype('../fonts/NotoSerifSC-Regular.otf', font_size_xl)
 unifont = ImageFont.load('../fonts/unifont-11.0.02.pil')
-Wenq9 = ImageFont.load('../fonts/wenquanyi_9pt.pil')
+Zfull = ImageFont.truetype('../fonts/Zfull-GB.ttf', font_size_xl)
 
-line_SC = '这是坠吼的！'
-line_SC_XL = '吼哇！'
+line_SC = u'这是坠吼的！'
+line_SC_XL = u'吼哇！'
 line_num = '123456789012345678901234567890'
 line_EN = 'The quick brown fox jumps over the lazy dog.'
 
 #print('Wenq: ', Wenq.getsize(line_SC))
 #print('NotoSansSC: ', NotoSansSC.getsize(line_SC))
 #print('NotoSerifSC: ', NotoSerifSC.getsize(line_SC_XL))
-print(Wenq9.getsize(line_num))
-print(unifont.getsize(line_num))
-
+#print('unifont', int(unifont.getsize(line_num)[0]/len(line_num)), unifont.getsize(line_num)[1])
+#print('Zfull', int(Zfull.getsize(line_SC_XL)[0]/len(line_SC_XL)), Zfull.getsize(line_SC_XL)[1])
+print(line_SC_XL)
 test_image = Image.new('1', (128, 64), 0)
 draw = ImageDraw.Draw(test_image)
+
 #draw.text((0, 0), line_SC, font = Wenq, spacing = 0, fill = 255)
 #draw.text((0, 20), line_SC, font = NotoSansSC, spacing = 0, fill = 255)
 #draw.text((0, 41), line_SC, font = NotoSerifSC, spacing = 0, fill = 255)
 #draw.text((16, 12), line_SC_XL, font = NotoSerifSC, spacing = 0, fill = 255)
+draw.text((16, 16), line_SC_XL, font = unifont, spacing = 0, fill = 255)
 
 #draw.text((0,0), line_num, font = unifont, fill = 255)
 #draw.text((0,17), line_num, font = unifont, fill = 255)
 #draw.text((0,33), line_num, font = unifont, fill = 255)
 #draw.text((0,49), line_num, font = unifont, fill = 255)
 
-draw.text((0,0), line_EN, font = unifont, fill = 255)
-draw.text((0,17), line_EN, font = unifont, fill = 255)
-draw.text((0,33), line_EN, font = unifont, fill = 255)
-draw.text((0,49), line_EN, font = unifont, fill = 255)
+#draw.text((0,0), line_EN, font = unifont, fill = 255)
+#draw.text((0,17), line_EN, font = unifont, fill = 255)
+#draw.text((0,33), line_EN, font = unifont, fill = 255)
+#draw.text((0,49), line_EN, font = unifont, fill = 255)
 
-#draw.text((0,0), line_num, font = Wenq9, fill = 255)
-#draw.text((0,17), line_num, font = Wenq9, fill = 255)
-#draw.text((0,33), line_num, font = Wenq9, fill = 255)
-#draw.text((0,49), line_num, font = Wenq9, fill = 255)
 
-#draw.text((0,0), line_EN, font = Wenq9, fill = 255)
-#draw.text((0,17), line_EN, font = Wenq9, fill = 255)
-#draw.text((0,33), line_EN, font = Wenq9, fill = 255)
-#draw.text((0,49), line_EN, font = Wenq9, fill = 255)
 
 
 imshow(test_image)
