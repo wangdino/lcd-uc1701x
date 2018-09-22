@@ -23,6 +23,7 @@ Wenq9 = ImageFont.load('../fonts/wenquanyi_9pt.pil')
 line_SC = '这是坠吼的！'
 line_SC_XL = '吼哇！'
 line_num = '123456789012345678901234567890'
+line_EN = 'The quick brown fox jumps over the lazy dog.'
 
 #print('Wenq: ', Wenq.getsize(line_SC))
 #print('NotoSansSC: ', NotoSansSC.getsize(line_SC))
@@ -42,10 +43,20 @@ draw = ImageDraw.Draw(test_image)
 #draw.text((0,33), line_num, font = unifont, fill = 255)
 #draw.text((0,49), line_num, font = unifont, fill = 255)
 
-draw.text((0,0), line_num, font = Wenq9, fill = 255)
-draw.text((0,17), line_num, font = Wenq9, fill = 255)
-draw.text((0,33), line_num, font = Wenq9, fill = 255)
-draw.text((0,49), line_num, font = Wenq9, fill = 255)
+draw.text((0,0), line_EN, font = unifont, fill = 255)
+draw.text((0,17), line_EN, font = unifont, fill = 255)
+draw.text((0,33), line_EN, font = unifont, fill = 255)
+draw.text((0,49), line_EN, font = unifont, fill = 255)
+
+#draw.text((0,0), line_num, font = Wenq9, fill = 255)
+#draw.text((0,17), line_num, font = Wenq9, fill = 255)
+#draw.text((0,33), line_num, font = Wenq9, fill = 255)
+#draw.text((0,49), line_num, font = Wenq9, fill = 255)
+
+#draw.text((0,0), line_EN, font = Wenq9, fill = 255)
+#draw.text((0,17), line_EN, font = Wenq9, fill = 255)
+#draw.text((0,33), line_EN, font = Wenq9, fill = 255)
+#draw.text((0,49), line_EN, font = Wenq9, fill = 255)
 
 
 imshow(test_image)
