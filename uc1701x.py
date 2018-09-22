@@ -121,31 +121,31 @@ class LCD:
 
         self.GPIOInit()
         GPIO.output(self.cs, LOW)
-        GPIO.output(self.rst, LOW)
+        GPIO.output(self.rst, LOW) # Hard reset initiate
         self.delay(100)
-        GPIO.output(self.rst, HIGH)
+        GPIO.output(self.rst, HIGH) # Hard reset done
         self.delay(20)
-        self.transferCommand(0xe2)
-        self.transferCommand(0x40)
-        self.transferCommand(0xa0)
-        self.transferCommand(0xc8)
-        self.transferCommand(0xa2)
-        self.transferCommand(0x2c)
-        self.transferCommand(0x2e)
-        self.transferCommand(0x2f)
-        self.transferCommand(0xf8)
+        self.transferCommand(0xe2) # Soft reset
+        self.transferCommand(0x40) # Start display at line 1
+        self.transferCommand(0xa0) # Scan left to right
+        self.transferCommand(0xc8) # Scan top to bottom
+        self.transferCommand(0xa2) # Bias 1/9
+        self.transferCommand(0x2c) # Set power control - boost on
+        self.transferCommand(0x2e) # Set power control - voltage regular
+        self.transferCommand(0x2f) # Set power control - voltage follower
+        self.transferCommand(0xf8) # Boost ratio 2x, 3x, or 4x
         self.transferCommand(0x00)
-        self.transferCommand(0x23)
-        self.transferCommand(0x81)
-        self.transferCommand(0x28)
-        self.transferCommand(0xac)
+        self.transferCommand(0x23) # Coarse contrast 0x20 - 0x27
+        self.transferCommand(0x81) # Fine tune contrast
+        self.transferCommand(0x28) # Fine contrast 0x00 - 0x3F
+        self.transferCommand(0xac) # 0xAC Static indicator off 0xAD on
         self.transferCommand(0x00)
-        self.transferCommand(0xa6)
-        self.transferCommand(0xaf)
+        self.transferCommand(0xa6) # 0xA6 Normal 0xA7 Reverse display
+        self.transferCommand(0xaf) # 0xAF Display on 0xAE Display off
         self.delay(100)
-        self.transferCommand(0xa5)
+        self.transferCommand(0xa5) # Display all pixels on
         self.delay(200)
-        self.transferCommand(0xa4)
+        self.transferCommand(0xa4) # Display all pixels off
         GPIO.output(self.cs, HIGH)
 
         
@@ -153,7 +153,7 @@ class LCD:
 
         GPIO.output(self.cs, LOW)
         self.transferCommand(0xb0 + line)
-        self.transferCommand(((col & 0x0f) >>4) + 0x10)
+        self.transferCommand(((col >>4) & 0x0f) + 0x10)
         self.transferCommand(col & 0x0f)
 
             
