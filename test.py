@@ -26,6 +26,9 @@ num = '123456789012345678901234567890'
 en = 'The quick brown fox jumps over the lazy dog.'
 multi = num + '\n' + en
 
-canvas = disp.txtDisp(line2, 'Zfull', 'xl', 4, 1)
+canvas = disp.txtDisp(line2, 'Wenq', 'xxxl', 8, 0)
 
-#imshow(canvas)
+try:
+    imshow(canvas)
+except:
+    pass

@@ -89,6 +89,7 @@ class DISP:
         lcd.displayImage(canvas)
         lcd.delay(5000)
         lcd.clearLCD()
+        lcd.offBackLight
         
     def objAlign(self, obj_x, obj_y, align):
         # align method
