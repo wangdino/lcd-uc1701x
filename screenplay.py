@@ -60,7 +60,8 @@ class DISP:
             fonthandle = ImageFont.load(path)
         
         # get text overall size
-        lines_x, lines_y = fonthandle.getsize(lines)
+        (lines_x, lines_y) = fonthandle.getsize(lines)
+        print('Input text size: %d x %d' %(lines_x, lines_y))
         
         # alignment handle
         x, y, validity = self.objAlign(lines_x, lines_y, align)
@@ -68,11 +69,47 @@ class DISP:
         canvas = Image.new('1', (self.dim_x, self.dim_y), 0)
         disp = ImageDraw.Draw(canvas)
 
-        if validity == 0:
-            print('Aborted...')
+        if validity == 1:
+            disp.text((x, y), lines, font = fonthandle, fill = 255, spacing = 0)
+        else:
+            canvas_temp = Image.new('1', (lines_x, lines_y), 0)
+            disp_temp = ImageDraw.Draw(canvas_temp)
+            disp_temp.text((x, y), lines, font = fonthandle, fill = 255, spacing = 0)
+            #canvas = canvas_temp.resize((self.dim_x, self.dim_y))
+            canvas = self.objResize(canvas_temp, self.dim_x, self.dim_y)
+            print('Object resized to fit.')
+        
+        # output: 0 - return image, 1 - LCD screen
+        if output == 1:
+            self.output(canvas)
+        else:
+            return canvas
+    
+    def imgDisp(self, img, align = 0, output = 0):
+        # input img is path to an image file
+        try:
+            canvas_in = Image.open(img, mode = 'r')
+        except IOError:
+            canvas = Image.new('1', (self.dim_x, self.dim_y), 0)
+            print('Incorrect image path, empty image created.')
             return canvas
         
-        disp.text((x, y), lines, font = fonthandle, fill = 255, spacing = 0)
+        # img size
+        (img_x, img_y) = canvas_in.size
+        print('Input image size: %d x %d' %(img_x, img_y))
+        
+        # alignment handle
+        x, y, validity = self.objAlign(img_x, img_y, align)
+        
+        canvas = Image.new('1', (self.dim_x, self.dim_y), 0)
+        #disp = ImageDraw.Draw(canvas)
+        
+        if validity == 1:
+            canvas.paste(canvas_in, (x, y, x + img_x, y + img_y))
+        else:
+            canvas = self.objResize(canvas_in, self.dim_x, self.dim_y)
+            print('Object resized to fit.')
+        
         # output: 0 - return image, 1 - LCD screen
         if output == 1:
             self.output(canvas)
@@ -119,5 +156,10 @@ class DISP:
         }
         x, y = alignmap[align]
         return x, y, 1
+    
+    def objResize(self, canvas_in, new_x, new_y):
+        # input object is an Image class
+        canvas_out = canvas_in.resize((new_x, new_y))
+        return canvas_out
             
 ### EOF ###

@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import screenplay
+from PIL import Image
 try:
-    from matplotlib.pyplot import imshow
+    import matplotlib.pyplot as plt
 except:
     pass
 
@@ -25,10 +26,14 @@ line2 = u'吼哇！'
 num = '123456789012345678901234567890'
 en = 'The quick brown fox jumps over the lazy dog.'
 multi = num + '\n' + en
+img_path = 'test.png'
 
 canvas = disp.txtDisp(line2, 'Wenq', 'xxxl', 8, 0)
+#canvas = disp.imgDisp(img_path, 0, 0)
 
 try:
-    imshow(canvas)
+    plt.imshow(canvas)
 except:
     pass
+
+#canvas.save('test_output.png', 'PNG')
