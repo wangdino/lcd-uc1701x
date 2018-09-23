@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 # Pin  1701   RPi.BCM  Board  Color
 # 01  ROM_IN    N/C     N/C    N/C
 # 02  ROM_OUT   N/C     N/C    N/C
