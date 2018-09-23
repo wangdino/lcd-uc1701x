@@ -26,6 +26,6 @@ num = '123456789012345678901234567890'
 en = 'The quick brown fox jumps over the lazy dog.'
 multi = num + '\n' + en
 
-canvas = disp.txtDisp(line2, 'Zfull', 'xl', 4)
+canvas = disp.txtDisp(line2, 'Zfull', 'xl', 4, 1)
 
-imshow(canvas)
+#imshow(canvas)
