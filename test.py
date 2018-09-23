@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 
 import screenplay
-from matplotlib.pyplot import imshow
+try:
+    from matplotlib.pyplot import imshow
+except:
+    pass
 
 disp = screenplay.DISP()
 
