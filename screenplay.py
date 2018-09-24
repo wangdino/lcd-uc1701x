@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont, ImageOps
 
 
 dimension = (128, 64)
@@ -95,13 +95,14 @@ class DISP:
         # input img is path to an image file
         try:
             canvas_in = Image.open(img, mode = 'r')
+            #print(canvas_in.mode)
         except IOError:
             canvas = Image.new('1', (self.dim_x, self.dim_y), 0)
             print('Incorrect image path, empty image created.')
             return canvas
         
         # convert image mode to 1-bit black and white
-        if canvas_in.mode != 1:
+        if canvas_in.mode != '1':
             canvas_in.convert('1')
         
         # img size
@@ -111,7 +112,7 @@ class DISP:
         # alignment handle
         x, y, validity = self.objAlign(img_x, img_y, align)
         
-        canvas = Image.new('1', (self.dim_x, self.dim_y), 0)
+        canvas = Image.new('1', (self.dim_x, self.dim_y), 255)
         #disp = ImageDraw.Draw(canvas)
         
         if validity == 1:
