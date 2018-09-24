@@ -55,7 +55,7 @@ class LCD:
         GPIO.setmode(GPIO.BCM) # GPIO.BCM or GPIO.BOARD
         GPIO.setup([cs, rst, rs,sda, sck, LEDA], GPIO.OUT)
 
-    def delay(self, delaytime):
+    def delay(self, delaytime = 100):
 
         time.sleep(delaytime / 1000.0)
 
