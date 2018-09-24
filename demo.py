@@ -1,83 +1,117 @@
 # -*- coding: utf-8 -*-
 
+import screenplay
 import uc1701x
-from PIL import Image, ImageDraw, ImageFont
-from time import gmtime, strftime
+#from PIL import Image, ImageDraw, ImageFont
+#from time import gmtime, strftime
 
 def main():
     
-    # Test fonts - https://fonts.google.com/
-    # ../fonts/UbuntuMono-Regular.ttf    Bold|BoldItalic|Italic
-    # ../fonts/Rokkitt-Regular.ttf    Black|Bold|ExtraBold|ExtraLight|Light|Medium|SemiBold|Thin
-    # ../fonts/PoiretOne-Regular.ttf
-    # ../fonts/Comfortaa-Regular.ttf    Bold|Light
-    font_size_reg = 16 # Height about 19-21px
-    font_size_xl = 32 # Height about 40px
+#'Comfortaa': ('fonts/Comfortaa-Regular.ttf', 12, 0),
+#'PoiretOne': ('fonts/PoiretOne-Regular.ttf', 16, 0),
+#'Rokkitt': ('fonts/Rokkitt-Regular.ttf', 14, 0),
+#'UbuntuMono': ('fonts/UbuntuMono-Regular.ttf', 15, 16),
+#'RobotoMono': ('fonts/RobotoMono-Regular.ttf', 16, 16),
+#'Wenq': ('fonts/wqy-zenhei.ttc', 16, 0),
+#'NotoSansSC': ('fonts/NotoSansSC-Regular.otf', 16, 0),
+#'NotoSerifSC': ('fonts/NotoSerifSC-Regular.otf', 16, 0),
+#'unifont': ('fonts/unifont-11.0.02.pil', 0, 16), # bitmap font
+#'Zfull': ('fonts/Zfull-GB.ttf', 16, 16),
     
-    Comfortaa = ImageFont.truetype('fonts/Comfortaa-Regular.ttf', 12)
-    PoiretOne = ImageFont.truetype('fonts/PoiretOne-Regular.ttf', 16)
-    Rokkitt = ImageFont.truetype('fonts/Rokkitt-Regular.ttf', 14)
-    UbuntuMono = ImageFont.truetype('fonts/UbuntuMono-Regular.ttf', 15) # 16 char per line
-    RobotoMono = ImageFont.truetype('fonts/RobotoMono-Regular.ttf', 14) # 16 char per line
+    
+    en_multi = u'The quick brown\nfox jumps over\nthe lazy dog.\n1234567890'
+    zh_multi = u'明月几时有\n把酒问青天\n不知天上宫阙\n今夕是何年'
+    excited = '吼哇！'
+    
+    demo1 = u'DEMO 1/5\nLetters Numbers'
+    demo2 = u'DEMO 2/5\n中文字符'
+    demo3 = u'DEMO 3/5\nMonospace Text'
+    demo4 = u'DEMO 4/5\nAuto Resize'
+    demo5 = u'DEMO 5/5\nPicture'
 
-    Wenq = ImageFont.truetype('fonts/wqy-zenhei.ttc', font_size_reg)
-    NotoSansSC = ImageFont.truetype('fonts/NotoSansSC-Regular.otf', font_size_reg)
-    NotoSerifSC = ImageFont.truetype('fonts/NotoSerifSC-Regular.otf', font_size_xl)
-    
-    line1 = 'The quick brown fox jumps over the lazy dog.'
-    line2 = '1234567890123456789'
-    line3 = 'PoiretOne'
-    line4 = 'Comfortaa'
-    line_SC = '这是坠吼的！'
-    line_SC_XL = '吼哇！'
+    disp = screenplay.DISP()
 
     lcd = uc1701x.LCD()
     lcd.initialLCD()
-
     # fill and clear LCD test
     lcd.fillDisplay()
     lcd.clearLCD()
+    # full back light ready
     lcd.fullBackLight()
-
-    image = Image.new('1', (uc1701x.LCD_WIDTH, uc1701x.LCD_HEIGHT), 0)
-    lcd.displayImage(image)
-    lcd.delay(100)
-    draw = ImageDraw.Draw(image)
-    draw.text((0,0), line1, font = Rokkitt, spacing = 0, fill = 255)
-    draw.text((0,17), line2, font = RobotoMono, spacing = 0, fill = 255)
-    draw.text((0,33), line3, font = PoiretOne, spacing = 0, fill = 255)
-    draw.text((0,49), line4, font = Comfortaa, spacing = 0, fill = 255)
-    lcd.setFrameBuffer(image)
-    lcd.displayImage(image)
-    lcd.delay(5000)
-    lcd.clearLCD()
-    image = Image.new('1', (uc1701x.LCD_WIDTH, uc1701x.LCD_HEIGHT), 0)
-    lcd.displayImage(image)
-    draw = ImageDraw.Draw(image)
-    draw.text((16, 12), line_SC_XL, font = NotoSerifSC, spacing = 0, fill = 255)
-    lcd.setFrameBuffer(image)
-    lcd.displayImage(image)
-    lcd.delay(10000)
-    lcd.clearLCD()
-
-    # keep refreshing
+    
     try:
         while True:
-            time = strftime("%H:%M:%S", gmtime())
-            draw.rectangle((0, 0, image.size[0], image.size[1]), fill = 0)
-            draw.rectangle((0, 0, 128, 16), fill = 255)
-            draw.text((0, 0), "Zulu Time:", font = UbuntuMono, fill = 0)
-            draw.text((0, 17), time, font = UbuntuMono, fill = 255)
-            draw.rectangle((0, 33, 128, 48), fill = 255)
-            draw.text((0, 33), 'RobotoMono12345678901234567890', font = RobotoMono, spacing = 0, fill = 0)
-            draw.text((0, 49), 'UbuntuMono12345678901234567890', font = UbuntuMono, spacing = 0, fill = 255)
-            lcd.setFrameBuffer(image)
-            lcd.displayImage(image)
+            lcd.displayImage(disp.txtDisp(demo1, 'Wenq', align=1))
+            lcd.delay(1000)
+            lcd.clearLCD()
+            lcd.displayImage(disp.txtDisp(en_multi, 'Comfortaa'))
+            lcd.delay(2000)
+            lcd.clearLCD()
+            lcd.displayImage(disp.txtDisp(en_multi, 'PoiretOne'))
+            lcd.delay(2000)
+            lcd.clearLCD()
+            lcd.displayImage(disp.txtDisp(en_multi, 'Rokkitt'))
+            lcd.delay(2000)
+            lcd.clearLCD()
+            lcd.displayImage(disp.txtDisp(en_multi, 'Wenq'))
+            lcd.delay(2000)
+            lcd.clearLCD()
+            lcd.displayImage(disp.txtDisp(en_multi, 'NotoSansSC'))
+            lcd.delay(2000)
+            lcd.clearLCD()
+            lcd.displayImage(disp.txtDisp(en_multi, 'NotoSerifSC'))
+            lcd.delay(2000)
+            lcd.clearLCD()
+            lcd.displayImage(disp.txtDisp(en_multi, 'Zfull'))
+            lcd.delay(2000)
+            lcd.clearLCD()
+            lcd.displayImage(disp.txtDisp(demo2, 'Wenq', align=1))
+            lcd.delay(1000)
+            lcd.clearLCD()
+            lcd.displayImage(disp.txtDisp(zh_multi, 'Wenq'))
+            lcd.delay(2000)
+            lcd.clearLCD()
+            lcd.displayImage(disp.txtDisp(zh_multi, 'NotoSansSC'))
+            lcd.delay(2000)
+            lcd.clearLCD()
+            lcd.displayImage(disp.txtDisp(zh_multi, 'NotoSerifSC'))
+            lcd.delay(2000)
+            lcd.clearLCD()
+            lcd.displayImage(disp.txtDisp(zh_multi, 'Zfull'))
+            lcd.delay(2000)
+            lcd.clearLCD()
+            lcd.displayImage(disp.txtDisp(demo3, 'Wenq', align=1))
+            lcd.delay(1000)
+            lcd.clearLCD()
+            lcd.displayImage(disp.txtDisp(en_multi, 'unifont'))
+            lcd.delay(2000)
+            lcd.clearLCD()
+            lcd.displayImage(disp.txtDisp(en_multi, 'UbuntuMono'))
+            lcd.delay(2000)
+            lcd.clearLCD()
+            lcd.displayImage(disp.txtDisp(en_multi, 'RobotoMono'))
+            lcd.delay(2000)
+            lcd.clearLCD()
+            lcd.displayImage(disp.txtDisp(en_multi, 'Zfull'))
+            lcd.delay(2000)
+            lcd.clearLCD()
+            lcd.displayImage(disp.txtDisp(demo4, 'Wenq', align=1))
+            lcd.delay(1000)
+            lcd.clearLCD()
+            lcd.displayImage(disp.txtDisp(excited, 'NotoSerifSC', 99, resize=1))
+            lcd.delay(2000)
+            lcd.clearLCD()
+            lcd.displayImage(disp.txtDisp(demo5, 'Wenq', align=1))
+            lcd.delay(1000)
+            lcd.clearLCD()
+            lcd.displayImage(disp.imgDisp('cat.png', align=0, resize=1, output=0))
+            lcd.delay(2000)
+            lcd.clearLCD()
     except KeyboardInterrupt:
-        print('Demo stopped...')
-        image = Image.new('1', (uc1701x.LCD_WIDTH, uc1701x.LCD_HEIGHT), 0)
-        lcd.displayImage(image)
+        lcd.clearLCD()
         lcd.offBackLight()
+        print('Demo stopped...')
+
 
 
 if __name__ == '__main__':
