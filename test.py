@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import screenplay
-from PIL import Image
+#from PIL import Image
 try:
     import matplotlib.pyplot as plt
 except:
@@ -21,14 +21,16 @@ disp = screenplay.DISP()
 #'unifont': ('fonts/unifont-11.0.02.pil', 0, 16), # bitmap font
 #'Zfull': ('fonts/Zfull-GB.ttf', 16, 0),
 
-line1 = u'这是坠吼的！'
-line2 = u'吼哇！'
+ch1 = u'这是坠吼的！'
+ch2 = u'吼哇！'
 num = '123456789012345678901234567890'
 en = 'The quick brown fox jumps over the lazy dog.'
-multi = num + '\n' + en
+multi1 = num + '\n' + en
+multi2 = u'明月几时有\n把酒问青天\n不知天上宫阙\n今夕是何年'
+
 img_path = 'test.png'
 
-canvas = disp.txtDisp(line2, 'Wenq', 'xxxl', 8, 0)
+canvas = disp.txtDisp(multi2, 'Zfull', 18)
 #canvas = disp.imgDisp(img_path, 0, 0)
 
 try:
