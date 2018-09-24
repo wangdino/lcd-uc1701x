@@ -36,48 +36,54 @@ class DISP:
         self.dim_x = dimension[0]
         self.dim_y = dimension[1]
     
-    def txtDisp(self, lines, fontface = None, fontsize = None, align = 0, output = 0):
+    def txtDisp(self, lines, fontface = None, fontsize = None, align = 0, resize = 0, output = 0):
         # font path handle; fontface can be text or none
         try:
             path = fontfaces[fontface][0]
         except:
             fontface = 'Wenq'
             path = fontfaces[fontface][0]
+        
         # font size handle; fontsize input can be integer or text or none
         if fontsize == None:
             size = fontfaces[fontface][1]
-        try:
-            size = int(fontsize)
-        except (ValueError, TypeError) as e:
+        else:
             try:
-                size = fontsizes[fontsize]
-            except KeyError:
-                size = fontsizes['reg']
+                size = int(fontsize)
+            except (ValueError, TypeError) as e:
+                try:
+                    size = fontsizes[fontsize]
+                except KeyError:
+                    size = fontsizes['reg']
+        
         # generate font handle
         if fontfaces[fontface][1] != 0:
-            fonthandle = ImageFont.truetype(path, size)
+            fonthandle = ImageFont.truetype(path, size) # Truetype font
         else:
-            fonthandle = ImageFont.load(path)
+            fonthandle = ImageFont.load(path) # bitmap font
+        
+        # create Image class
+        canvas = Image.new('1', (self.dim_x, self.dim_y), 0)
+        disp = ImageDraw.Draw(canvas)
         
         # get text overall size
-        (lines_x, lines_y) = fonthandle.getsize(lines)
+        (lines_x, lines_y) = disp.textsize(lines, fonthandle, spacing = 0)
         print('Input text size: %d x %d' %(lines_x, lines_y))
         
         # alignment handle
         x, y, validity = self.objAlign(lines_x, lines_y, align)
 
-        canvas = Image.new('1', (self.dim_x, self.dim_y), 0)
-        disp = ImageDraw.Draw(canvas)
-
         if validity == 1:
-            disp.text((x, y), lines, font = fonthandle, fill = 255, spacing = 0)
-        else:
+            disp.multiline_text((x, y), lines, font = fonthandle, fill = 255, spacing = 0)
+        elif resize == 1:
             canvas_temp = Image.new('1', (lines_x, lines_y), 0)
             disp_temp = ImageDraw.Draw(canvas_temp)
-            disp_temp.text((x, y), lines, font = fonthandle, fill = 255, spacing = 0)
-            #canvas = canvas_temp.resize((self.dim_x, self.dim_y))
+            disp_temp.multiline_text((x, y), lines, font = fonthandle, fill = 255, spacing = 0)
             canvas = self.objResize(canvas_temp, self.dim_x, self.dim_y)
             print('Object resized to fit.')
+        else:
+            disp.multiline_text((x, y), lines, font = fonthandle, fill = 255, spacing = 0)
+            print('Object not resized.')
         
         # output: 0 - return image, 1 - LCD screen
         if output == 1:
@@ -85,7 +91,7 @@ class DISP:
         else:
             return canvas
     
-    def imgDisp(self, img, align = 0, output = 0):
+    def imgDisp(self, img, align = 0, resize = 0, output = 0):
         # input img is path to an image file
         try:
             canvas_in = Image.open(img, mode = 'r')
@@ -106,9 +112,12 @@ class DISP:
         
         if validity == 1:
             canvas.paste(canvas_in, (x, y, x + img_x, y + img_y))
-        else:
+        elif resize == 1:
             canvas = self.objResize(canvas_in, self.dim_x, self.dim_y)
             print('Object resized to fit.')
+        else:
+            canvas.paste(canvas_in, (x, y, x + img_x, y + img_y))
+            print('Object not resized')
         
         # output: 0 - return image, 1 - LCD screen
         if output == 1:
@@ -159,7 +168,8 @@ class DISP:
     
     def objResize(self, canvas_in, new_x, new_y):
         # input object is an Image class
-        canvas_out = canvas_in.resize((new_x, new_y))
+        canvas_out = canvas_in.resize((new_x, new_y), resample = Image.LANCZOS)
+        #return canvas_in
         return canvas_out
             
 ### EOF ###
