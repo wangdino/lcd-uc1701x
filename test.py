@@ -28,10 +28,10 @@ en = 'The quick brown fox jumps over the lazy dog.'
 multi1 = num + '\n' + en
 multi2 = u'明月几时有\n把酒问青天\n不知天上宫阙\n今夕是何年'
 
-img_path = 'test.png'
+img_path = 'cat.png'
 
-canvas = disp.txtDisp(multi2, 'Zfull', 17, resize=1)
-#canvas = disp.imgDisp(img_path, 0, 0)
+#canvas = disp.txtDisp(multi2, 'Zfull', 17, resize=1)
+canvas = disp.imgDisp(img_path, resize=1)
 
 try:
     plt.imshow(canvas)

@@ -100,6 +100,10 @@ class DISP:
             print('Incorrect image path, empty image created.')
             return canvas
         
+        # convert image mode to 1-bit black and white
+        if canvas_in.mode != 1:
+            canvas_in.convert('1')
+        
         # img size
         (img_x, img_y) = canvas_in.size
         print('Input image size: %d x %d' %(img_x, img_y))
